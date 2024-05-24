@@ -8,6 +8,11 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "../ImageModal/ImageModal";
 
+import Modal from "react-modal";
+import { boolean } from "yup";
+
+Modal.setAppElement("#root");
+
 export default function App() {
   const [img, setImg] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -36,7 +41,7 @@ export default function App() {
     data();
   }, [query, page]);
 
-  const handleSubmit = (query) => {
+  const handleSubmit = (query: string) => {
     setQuery(query);
     setImg([]);
     setPage(1);
@@ -49,7 +54,7 @@ export default function App() {
     setPage((prevPage) => prevPage + 1);
   };
 
-  const showModal = (url) => {
+  const showModal = (url: string) => {
     setImgUlr(url);
     setModal(true);
   };
