@@ -2,7 +2,11 @@ import toast, { Toaster } from "react-hot-toast";
 import { IoSearch } from "react-icons/io5";
 import css from "./SearchBar.module.css";
 
-export default function SearchBar({ onSubmit }) {
+type SearchQuery = {
+  onSubmit: (data: string) => void;
+};
+
+export default function SearchBar({ onSubmit }: SearchQuery) {
   const onSubmitBar = (evt) => {
     evt.preventDefault();
     const form = evt.target;

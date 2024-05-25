@@ -1,6 +1,10 @@
 import css from "./LoadMoreBtn.module.css";
 
-export default function LoadMoreBtn({ addPage }) {
+type AddPage = {
+  addPage: () => void;
+};
+
+export default function LoadMoreBtn({ addPage }: AddPage) {
   return (
     <div className={css.loadMoreBtnContainer}>
       <button onClick={addPage} type="button" className={css.loadMoreBtn}>
