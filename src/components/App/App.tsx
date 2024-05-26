@@ -13,14 +13,6 @@ import { boolean } from "yup";
 
 Modal.setAppElement("#root");
 
-type Urls = { small: string; regular: string };
-
-type PrevImages = {
-  id: string;
-  alt_description: string;
-  urls: Urls;
-};
-
 export default function App() {
   const [img, setImg] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -38,7 +30,7 @@ export default function App() {
       try {
         setLoading(true);
         const newImages = await fetchImgGallery(query, page);
-        setImg((prevImages: PrevImages): PrevImages[] => {
+        setImg((prevImages) => {
           return [...prevImages, ...newImages];
         });
       } catch {
@@ -64,7 +56,7 @@ export default function App() {
     setPage((prevPage) => prevPage + 1);
   };
 
-  const showModal = (url: string) => {
+  const showModal = (url) => {
     setImgUlr(url);
     setModal(true);
   };
