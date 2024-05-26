@@ -9,18 +9,30 @@ import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "../ImageModal/ImageModal";
 
 import Modal from "react-modal";
-import { boolean } from "yup";
 
 Modal.setAppElement("#root");
 
+type Status = true | false;
+
+type Urls = {
+  small: string;
+  regular: string;
+};
+
+type Images = {
+  alt_description: string;
+  urls: Urls;
+  id: string;
+};
+
 export default function App() {
-  const [img, setImg] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [page, setPage] = useState(1);
-  const [query, setQuery] = useState("");
-  const [imgUrl, setImgUlr] = useState(null);
-  const [modal, setModal] = useState(false);
+  const [img, setImg] = useState<Images[]>([]);
+  const [loading, setLoading] = useState<Status>(false);
+  const [error, setError] = useState<Status>(false);
+  const [page, setPage] = useState<number>(1);
+  const [query, setQuery] = useState<string>("");
+  const [imgUrl, setImgUlr] = useState<string>("");
+  const [modal, setModal] = useState<Status>(false);
 
   useEffect(() => {
     if (!query) {
@@ -30,7 +42,7 @@ export default function App() {
       try {
         setLoading(true);
         const newImages = await fetchImgGallery(query, page);
-        setImg((prevImages) => {
+        setImg((prevImages): Images[] => {
           return [...prevImages, ...newImages];
         });
       } catch {
@@ -43,25 +55,25 @@ export default function App() {
     data();
   }, [query, page]);
 
-  const handleSubmit = (query: string) => {
+  const handleSubmit = (query: string): void => {
     setQuery(query);
     setImg([]);
     setPage(1);
     setError(false);
     setLoading(false);
-    setImgUlr(null);
+    setImgUlr("");
   };
 
-  const addMoreImg = () => {
+  const addMoreImg = (): void => {
     setPage((prevPage) => prevPage + 1);
   };
 
-  const showModal = (url) => {
+  const showModal = (url: string): void => {
     setImgUlr(url);
     setModal(true);
   };
 
-  const closeModal = () => {
+  const closeModal = (): void => {
     setModal(false);
   };
 
