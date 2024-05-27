@@ -1,29 +1,19 @@
 import { useState, useEffect } from "react";
 import { fetchImgGallery } from "../../render-api";
 
-import SearchBar from "../SearchBar/SearchBar";
-import ImageGallery from "../ImageGallery/ImageGallery";
+import { SearchBar } from "../SearchBar/SearchBar";
+import { ImageGallery } from "../ImageGallery/ImageGallery";
 import Loader from "../Loader/Loader";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
-import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
-import ImageModal from "../ImageModal/ImageModal";
+import { LoadMoreBtn } from "../LoadMoreBtn/LoadMoreBtn";
+import { ImageModal } from "../ImageModal/ImageModal";
 
 import Modal from "react-modal";
+import { Images } from "../../types";
 
 Modal.setAppElement("#root");
 
 type Status = true | false;
-
-type Urls = {
-  small: string;
-  regular: string;
-};
-
-type Images = {
-  alt_description: string;
-  urls: Urls;
-  id: string;
-};
 
 export default function App() {
   const [img, setImg] = useState<Images[]>([]);

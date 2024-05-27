@@ -1,27 +1,20 @@
+import { Images } from "../../types";
 import css from "./ImageCard.module.css";
 
-type Urls = {
-  small: string;
-  regular: string;
-};
+import React, { FC } from "react";
 
-type Images = {
-  alt_description: string;
-  urls: Urls;
-};
-
-type Props = {
+type ImageCardProps = {
   img: Images;
   onClick: (regular: string) => void;
 };
 
-export default function ImageCard({
+export const ImageCard: FC<ImageCardProps> = ({
   img: {
     alt_description,
     urls: { small, regular },
   },
   onClick,
-}: Props) {
+}) => {
   return (
     <div>
       <img
@@ -32,4 +25,4 @@ export default function ImageCard({
       />
     </div>
   );
-}
+};

@@ -1,10 +1,11 @@
+import { FC } from "react";
 import css from "./LoadMoreBtn.module.css";
 
-type AddPage = {
+type LoadMoreBtnProps = {
   addPage: () => void;
 };
 
-export default function LoadMoreBtn({ addPage }: AddPage) {
+export const LoadMoreBtn: FC<LoadMoreBtnProps> = ({ addPage }) => {
   return (
     <div className={css.loadMoreBtnContainer}>
       <button onClick={addPage} type="button" className={css.loadMoreBtn}>
@@ -12,4 +13,4 @@ export default function LoadMoreBtn({ addPage }: AddPage) {
       </button>
     </div>
   );
-}
+};

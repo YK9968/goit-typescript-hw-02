@@ -1,23 +1,23 @@
 import toast, { Toaster } from "react-hot-toast";
 import { IoSearch } from "react-icons/io5";
 import css from "./SearchBar.module.css";
-import { FormEvent } from "react";
+import { FC, FormEvent } from "react";
 
-type SearchQuery = {
+type SearchBarProps = {
   onSubmit: (data: string) => void;
 };
 
-export default function SearchBar({ onSubmit }: SearchQuery) {
-  const onSubmitBar = (evt: FormEvent) => {
+export const SearchBar: FC<SearchBarProps> = ({ onSubmit }) => {
+  const onSubmitBar = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    const form = evt.target;
-    const data = form.elements.search.value;
+    const form = evt.target as HTMLFormElement;
+    const data = form.elements.namedItem("search") as HTMLInputElement;
 
-    if (data.trim() === "") {
+    if (data.value.trim() === "") {
       toast.error("Sorry, input is emty. Please try again!");
       return;
     }
-    onSubmit(data.trim());
+    onSubmit(data.value.trim());
 
     form.reset();
   };
@@ -40,4 +40,4 @@ export default function SearchBar({ onSubmit }: SearchQuery) {
       <Toaster position="top-right" reverseOrder={false} />
     </header>
   );
-}
+};

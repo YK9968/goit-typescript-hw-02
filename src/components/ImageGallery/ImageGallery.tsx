@@ -1,20 +1,14 @@
-import ImageCard from "../ImageCard/ImageCard";
+import { FC } from "react";
+import { Images } from "../../types";
+import { ImageCard } from "../ImageCard/ImageCard";
 import css from "./ImageGallery.module.css";
 
-type Urls = { small: string; regular: string };
-
-type Images = {
-  id: string;
-  alt_description: string;
-  urls: Urls;
-};
-
-type Props = {
+type PropsImageGallery = {
   images: Images[];
   onClick: (regular: string) => void;
 };
 
-export default function ImageGallery({ images, onClick }: Props) {
+export const ImageGallery: FC<PropsImageGallery> = ({ images, onClick }) => {
   return (
     <ul className={css.imageGalleryList}>
       {images.map((img: Images) => (
@@ -24,4 +18,4 @@ export default function ImageGallery({ images, onClick }: Props) {
       ))}
     </ul>
   );
-}
+};

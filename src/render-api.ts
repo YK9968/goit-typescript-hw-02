@@ -3,7 +3,21 @@ import axios from "axios";
 axios.defaults.baseURL = "https://api.unsplash.com/search/photos";
 const API_KEY = "7yGMRxceie6BzHzBqtS3DZY0cJLr7mnIne-jqwYoVsw";
 
-export const fetchImgGallery = async (query, page) => {
+type Urls = {
+  small: string;
+  regular: string;
+};
+
+type Images = {
+  alt_description: string;
+  urls: Urls;
+  id: string;
+};
+
+export const fetchImgGallery = async (
+  query: string,
+  page: number
+): Promise<[Images]> => {
   const orientationImg = "landscape";
   const response = axios.get("", {
     params: {
